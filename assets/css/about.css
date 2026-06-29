@@ -1,0 +1,300 @@
+/* ========================================
+   PREMIUM ABOUT SECTION STYLES
+======================================== */
+
+.premium-about {
+    position: relative;
+    padding: 150px 0;
+    background: var(--light-bg);
+    overflow: hidden;
+}
+
+/* Atmospheric Glow with Continuous Breathing Animation */
+.about-bg-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: rgba(232, 221, 204, 0.4); /* Uses your warm --accent variable */
+    filter: blur(120px);
+    top: -150px;
+    right: -100px;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.breathing-glow {
+    animation: breathe 8s ease-in-out infinite alternate;
+}
+
+@keyframes breathe {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+    100% { transform: scale(1.2) translate(-30px, 30px); opacity: 0.8; }
+}
+
+.relative-z {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Architectural Section Header --- */
+.about-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.about-subtitle {
+    font-size: 0.85rem;
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-light);
+    white-space: nowrap;
+}
+
+.header-line {
+    flex-grow: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.about-title {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: var(--fw-semibold);
+    color: var(--text);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.about-title .serif-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    color: var(--text-light);
+}
+
+/* --- Main Grid Layout --- */
+.about-about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* --- Left Side: Narrative & Stats --- */
+.about-narrative {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.designer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+    border-radius: var(--radius-round);
+    font-size: 0.85rem;
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 35px;
+    color: var(--text);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: transform 0.4s ease;
+}
+
+.designer-badge:hover {
+    transform: translateY(-3px);
+}
+
+.text-accent {
+    color: #10b981; 
+    animation: pulse-green 2s infinite;
+}
+
+.narrative-headline {
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    line-height: 1.05;
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 30px;
+}
+
+.narrative-headline .serif-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-light);
+}
+
+.narrative-text-wrapper {
+    max-width: 90%;
+}
+
+.narrative-body {
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    line-height: 1.7;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-weight: var(--fw-light);
+}
+
+/* Premium gradient highlight for the industries text */
+.text-highlight {
+    font-weight: var(--fw-medium);
+    background: linear-gradient(120deg, var(--text), #664d3c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: 1px solid rgba(55, 37, 24, 0.2);
+}
+
+/* --- Right Side: Premium Skills Grid --- */
+.about-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* The Masonry Stagger */
+.offset-card {
+    transform: translateY(40px); /* Pushes the even columns down */
+}
+
+/* Base Card Styling */
+.skill-card-premium {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 35px 25px;
+    min-height: 180px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(55, 37, 24, 0.03);
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    cursor: default;
+    overflow: hidden;
+}
+
+/* Continuous Floating Animations (Staggered to look natural) */
+.floating-card-1 { animation: float-card 6s ease-in-out infinite; }
+.floating-card-2 { animation: float-card 7s ease-in-out infinite 1s; }
+.floating-card-3 { animation: float-card 5s ease-in-out infinite 2s; }
+
+@keyframes float-card {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* When the card is an offset card, we must include the 40px drop in the keyframes */
+.offset-card.floating-card-1 { animation: float-offset 6s ease-in-out infinite; }
+.offset-card.floating-card-2 { animation: float-offset 7s ease-in-out infinite 1s; }
+.offset-card.floating-card-3 { animation: float-offset 5s ease-in-out infinite 2s; }
+
+@keyframes float-offset {
+    0%, 100% { transform: translateY(40px); }
+    50% { transform: translateY(32px); }
+}
+
+/* Pause the floating when hovered to prevent jitter */
+.skill-card-premium:hover {
+    animation-play-state: paused !important;
+}
+
+/* Inner elements */
+.skill-icon {
+    font-size: 2rem;
+    color: var(--text);
+    margin-bottom: 20px;
+    transition: transform 0.4s ease, color 0.4s ease;
+}
+
+.skill-name {
+    font-size: 1rem;
+    font-weight: var(--fw-semibold);
+    line-height: 1.3;
+    color: var(--text);
+    transition: color 0.4s ease;
+}
+
+/* Hover Inversion Effect */
+.skill-card-premium:hover {
+    background: var(--text);
+    border-color: var(--text);
+    box-shadow: 0 20px 40px rgba(55, 37, 24, 0.15);
+}
+
+.skill-card-premium:hover .skill-icon {
+    color: var(--white);
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.skill-card-premium:hover .skill-name {
+    color: var(--white);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 1024px) {
+    .about-about-grid {
+        grid-template-columns: 1fr;
+        gap: 80px; /* More space between text and grid on tablet */
+    }
+    
+    .narrative-text-wrapper {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .premium-about { padding: 100px 0; }
+    
+    .about-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 50px;
+    }
+    
+    .header-line { width: 100%; }
+    .about-title { white-space: normal; }
+    
+    .about-skills-grid {
+        grid-template-columns: 1fr; /* Stacks cards on mobile */
+        gap: 15px;
+    }
+    
+    /* Remove the masonry stagger on mobile */
+    .offset-card { transform: none; }
+    .offset-card.floating-card-1,
+    .offset-card.floating-card-2,
+    .offset-card.floating-card-3 {
+        animation: float-card 6s ease-in-out infinite; /* Reset to normal float */
+    }
+    
+    .skill-card-premium {
+        min-height: auto;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        padding: 25px;
+    }
+    
+    .skill-icon { margin-bottom: 0; }
+    
+    /* FIXED: Correct syntax for hiding the line break on mobile */
+    .skill-name br { display: none; } 
+}

@@ -1,0 +1,409 @@
+/* ========================================
+   THE COUTURE FINALE (BEAUTIFUL & FEMININE)
+======================================== */
+
+.couture-finale {
+  position: relative;
+  padding: 150px 0 50px 0;
+  background: #fdf8f5; /* A gorgeous, soft pearl/blush white */
+  overflow: hidden;
+  font-family: var(--font-primary);
+}
+
+.relative-z {
+  position: relative;
+  z-index: 5;
+}
+
+/* --- Ethereal Glowing Aura Background --- */
+.aura-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aura-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+  animation: aura-drift 25s infinite alternate ease-in-out;
+}
+
+.blush-orb {
+  width: 60vw;
+  height: 60vw;
+  background: #fdecef; /* Soft romantic blush */
+  top: -20%;
+  left: -10%;
+}
+
+.champagne-orb {
+  width: 50vw;
+  height: 50vw;
+  background: #f7efe5; /* Warm champagne gold */
+  bottom: -10%;
+  right: -10%;
+  animation-delay: -10s;
+}
+
+@keyframes aura-drift {
+  100% {
+    transform: translate(100px, 50px) scale(1.2);
+  }
+}
+
+/* --- Elegant Header --- */
+.couture-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.couture-subtitle {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 700;
+  color: #dda7a5; /* Rose Gold */
+  margin-bottom: 20px;
+}
+
+.couture-title {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 800;
+  color: #372518; /* Deep espresso brown for contrast */
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.couture-title .serif-italic {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #c28b89; /* Deeper dusty rose */
+}
+
+/* --- The Layout --- */
+.couture-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 100px;
+}
+
+/* ========================================
+   LEFT: The Invitation Card (Resume)
+======================================== */
+.couture-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.invitation-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  padding: 50px 40px;
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(221, 167, 165, 0.15); /* Soft rose shadow */
+  max-width: 380px;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.invitation-card:hover {
+  transform: translateY(-10px);
+}
+
+.invite-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: #dda7a5;
+  margin-bottom: 15px;
+}
+
+.invite-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #372518;
+  line-height: 1.1;
+  margin: 0 0 15px 0;
+}
+
+.invite-title .serif-italic {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.invite-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(55, 37, 24, 0.7);
+  margin-bottom: 35px;
+}
+
+/* Beautiful Rose Gold Button */
+.btn-rose-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #372518;
+  color: #fff;
+  padding: 8px 8px 8px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.btn-rose-gold .btn-text {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.btn-icon-circle {
+  width: 45px;
+  height: 45px;
+  background: #fff;
+  color: #372518;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.btn-rose-gold:hover {
+  background: #dda7a5; /* Shifts to rose gold */
+  box-shadow: 0 15px 30px rgba(221, 167, 165, 0.4);
+}
+
+.btn-rose-gold:hover .btn-icon-circle {
+  background: #372518;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* ========================================
+   CENTER: The Architectural Arch
+======================================== */
+.couture-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.arch-wrapper {
+  position: relative;
+  width: 320px;
+}
+
+/* The Beautiful Curved Image Frame */
+.arch-frame {
+  width: 100%;
+  height: 480px;
+  border-radius: 200px 200px 0 0; /* Creates the classic architectural arch */
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 40px 80px rgba(55, 37, 24, 0.1);
+}
+
+.arch-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.arch-frame:hover img {
+  transform: scale(1.05);
+}
+
+/* The Spinning Typographic Ring */
+.arch-ring {
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 420px;
+  height: 420px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.rotating-svg {
+  width: 100%;
+  height: 100%;
+  animation: spin-ring 25s linear infinite;
+}
+
+.rotating-svg text {
+  font-family: var(--font-primary);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  fill: #c28b89;
+  text-transform: uppercase;
+}
+
+@keyframes spin-ring {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================
+   RIGHT: The Boutique Socials
+======================================== */
+.couture-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.social-boutique {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.boutique-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: #dda7a5;
+  margin-bottom: 10px;
+}
+
+.boutique-link {
+  text-decoration: none;
+  color: #372518;
+  position: relative;
+  display: inline-block;
+  width: max-content;
+}
+
+.link-text {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 500;
+  transition: color 0.4s ease;
+}
+
+/* The Delicate Silk Thread Hover Effect */
+.link-line {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: #c28b89;
+  transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.boutique-link:hover .link-text {
+  color: #c28b89;
+}
+
+.boutique-link:hover .link-line {
+  width: 100%;
+}
+
+/* --- Delicate Footer --- */
+.couture-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  border-top: 1px solid rgba(221, 167, 165, 0.3);
+}
+
+.c-foot-text {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: rgba(55, 37, 24, 0.6);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 1024px) {
+  .couture-layout {
+    flex-direction: column;
+    gap: 80px;
+  }
+
+  .couture-left,
+  .couture-right {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .invitation-card {
+    align-items: center;
+    text-align: center;
+  }
+  .social-boutique {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .couture-finale {
+    padding: 100px 0 30px 0;
+  }
+
+  .couture-title {
+    font-size: 2.8rem;
+  }
+
+  .arch-wrapper {
+    width: 280px;
+  }
+  .arch-frame {
+    height: 400px;
+  }
+  .arch-ring {
+    width: 360px;
+    height: 360px;
+    top: -40px;
+    left: -40px;
+  }
+
+  .invitation-card {
+    padding: 40px 25px;
+  }
+  .invite-title {
+    font-size: 2rem;
+  }
+
+  .link-text {
+    font-size: 1.8rem;
+  }
+
+  .couture-footer {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}

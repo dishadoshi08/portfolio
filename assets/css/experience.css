@@ -1,0 +1,502 @@
+/* ========================================
+   EDITORIAL EXPERIENCE TIMELINE
+======================================== */
+
+.editorial-timeline {
+  padding: 120px 0;
+  background: var(--light-bg);
+}
+
+.timeline-ledger {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+}
+
+/* The Focus/Dim Interaction */
+.timeline-ledger:hover .ledger-row.is-visible:not(:hover) {
+  opacity: 0.25;
+  filter: blur(2px);
+}
+
+/* --- Individual Row Base & Initial Hidden State --- */
+.ledger-row {
+  display: grid;
+  grid-template-columns: 250px 1.2fr 1.5fr;
+  gap: 40px;
+  padding: 60px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: default;
+
+  /* Animation Base State */
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    filter 0.5s ease;
+}
+
+/* --- Revealed State (Triggered by JS) --- */
+.ledger-row.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover Nudge (Ensuring it combines smoothly with the revealed state) */
+.ledger-row.is-visible:hover {
+  transform: translateY(0) translateX(10px);
+}
+
+/* --- Column 1: Timeframe --- */
+.ledger-time {
+  display: flex;
+  align-items: flex-start;
+}
+
+.time-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: var(--radius-round);
+  font-size: 0.8rem;
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+.time-pill.glass-subtle {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.time-pill.hollow-pill {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-light);
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: pulse-green 2s infinite;
+}
+
+/* --- Column 2: Identity --- */
+.ledger-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.company-name {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin: 0;
+}
+
+.role-title {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* --- Column 3: Responsibilities --- */
+.ledger-responsibilities {
+  display: flex;
+  align-items: flex-start;
+}
+
+.designer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.designer-list li {
+  position: relative;
+  padding-left: 25px;
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.6;
+  font-weight: var(--fw-light);
+  color: var(--text-light);
+  transition: color 0.3s ease;
+}
+
+.designer-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 12px;
+  height: 1px;
+  background: var(--text-light);
+  transition:
+    width 0.3s ease,
+    background 0.3s ease;
+}
+
+.ledger-row.is-visible:hover .designer-list li {
+  color: var(--text);
+}
+.ledger-row.is-visible:hover .designer-list li::before {
+  width: 16px;
+  background: var(--accent);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 1024px) {
+  .ledger-row {
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    padding: 50px 0;
+  }
+  .ledger-time {
+    grid-column: 1 / -1;
+    margin-bottom: -15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .editorial-timeline {
+    padding: 80px 0;
+  }
+  .ledger-row {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 40px 0;
+    /* Slightly smaller transform for mobile */
+    transform: translateY(30px);
+  }
+
+  .timeline-ledger:hover .ledger-row.is-visible:not(:hover) {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  .ledger-row.is-visible:hover {
+    transform: translateY(0);
+  }
+
+  .time-pill {
+    font-size: 0.7rem;
+    padding: 6px 14px;
+  }
+  .company-name {
+    margin-bottom: 5px;
+  }
+  .designer-list li {
+    font-size: 0.95rem;
+  }
+}
+
+/* --- Hero Right Side Insights --- */
+.haute-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px; /* Spacing between stats */
+  padding-right: 20px;
+  transform: translateY(40px); /* Asymmetrical drop */
+}
+
+.insight {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-left: 1px solid var(--text); /* Architectural hairline */
+  padding-left: 20px;
+  opacity: 0;
+  transform: translateX(20px);
+  animation: fadeSlideIn 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+/* Stagger the animations so they load in one by one */
+.insight-top {
+  animation-delay: 0.3s;
+}
+.insight-middle {
+  animation-delay: 0.5s;
+}
+.insight-bottom {
+  animation-delay: 0.7s;
+}
+
+.insight-number {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text);
+  letter-spacing: -0.03em;
+}
+
+.insight-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-light);
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+}
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Mobile Fix for Insights */
+@media (max-width: 768px) {
+  .haute-right {
+    flex-direction: row; /* Put stats in a row on mobile */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    transform: none;
+    padding-top: 30px;
+  }
+
+  .insight {
+    border-left: none;
+    border-top: 1px solid var(--text);
+    padding-left: 0;
+    padding-top: 15px;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* ========================================
+   EDITORIAL EXPERIENCE TIMELINE (CARD STACK)
+======================================== */
+
+.editorial-timeline {
+  padding: 120px 0;
+  background: var(--light-bg);
+}
+
+.timeline-ledger {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 100px; /* Gives room to scroll past the stack */
+}
+
+/* --- The Sticky Cards --- */
+.ledger-row {
+  position: sticky; /* The magic property */
+  background: var(--white); /* Must be solid to cover the card beneath it */
+
+  display: grid;
+  grid-template-columns: 250px 1.2fr 1.5fr;
+  gap: 40px;
+
+  /* Turn the row into a beautiful card */
+  padding: 60px 40px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  border: 1px solid rgba(55, 37, 24, 0.05);
+  box-shadow: 0 -20px 50px rgba(55, 37, 24, 0.05); /* Casts shadow on previous card */
+
+  cursor: default;
+
+  /* Animation Base State */
+  opacity: 0;
+  transform: translateY(60px);
+  transition:
+    opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    filter 0.5s ease;
+}
+
+/* Staggered Top Positions (Creates the overlapping "Deck" effect) */
+.ledger-row:nth-child(1) {
+  top: 100px;
+  z-index: 10;
+}
+.ledger-row:nth-child(2) {
+  top: 120px;
+  z-index: 11;
+}
+.ledger-row:nth-child(3) {
+  top: 140px;
+  z-index: 12;
+}
+.ledger-row:nth-child(4) {
+  top: 160px;
+  z-index: 13;
+}
+.ledger-row:nth-child(5) {
+  top: 180px;
+  z-index: 14;
+}
+
+/* --- Revealed State (Triggered by JS) --- */
+.ledger-row.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The Focus/Dim Interaction */
+.timeline-ledger:hover .ledger-row.is-visible:not(:hover) {
+  opacity: 0.6; /* Kept lighter so the cards below don't completely disappear */
+  filter: blur(2px);
+}
+
+/* --- Column 1: Timeframe --- */
+.ledger-time {
+  display: flex;
+  align-items: flex-start;
+}
+
+.time-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: var(--radius-round);
+  font-size: 0.8rem;
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+.time-pill.glass-subtle {
+  background: var(
+    --light-bg
+  ); /* Swapped to light-bg since the card is now white */
+  border: 1px solid var(--border);
+}
+
+.time-pill.hollow-pill {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-light);
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: pulse-green 2s infinite;
+}
+
+/* --- Column 2: Identity --- */
+.ledger-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.company-name {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin: 0;
+}
+
+.role-title {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* --- Column 3: Responsibilities --- */
+.ledger-responsibilities {
+  display: flex;
+  align-items: flex-start;
+}
+
+.designer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.designer-list li {
+  position: relative;
+  padding-left: 25px;
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.6;
+  font-weight: var(--fw-light);
+  color: var(--text-light);
+  transition: color 0.3s ease;
+}
+
+.designer-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 12px;
+  height: 1px;
+  background: var(--text-light);
+  transition:
+    width 0.3s ease,
+    background 0.3s ease;
+}
+
+.ledger-row.is-visible:hover .designer-list li {
+  color: var(--text);
+}
+.ledger-row.is-visible:hover .designer-list li::before {
+  width: 16px;
+  background: var(--accent);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 1024px) {
+  .ledger-row {
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    padding: 50px 30px;
+  }
+  .ledger-time {
+    grid-column: 1 / -1;
+    margin-bottom: -15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ledger-row {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 40px 20px;
+  }
+
+  /* Disable the hover/blur effect on mobile */
+  .timeline-ledger:hover .ledger-row.is-visible:not(:hover) {
+    opacity: 1;
+    filter: blur(0);
+  }
+}

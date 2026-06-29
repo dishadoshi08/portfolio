@@ -1,0 +1,316 @@
+/* ========================================
+   SPATIAL GLASS SKILLS SECTION
+======================================== */
+
+.spatial-skills {
+  position: relative;
+  padding: 150px 0;
+  background: #fafafa; /* Ultra clean off-white */
+  overflow: hidden;
+}
+
+.relative-z {
+  position: relative;
+  z-index: 2;
+}
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+/* --- Beautiful Animated Mesh Background --- */
+.mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  z-index: 0;
+  animation: drift 20s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+  width: 400px;
+  height: 400px;
+  /* background: rgba(16, 185, 129, 0.2); */
+  top: -100px;
+  left: -100px;
+}
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: rgba(245, 219, 200, 0.5);
+  bottom: -100px;
+  right: -100px;
+  animation-delay: -5s;
+}
+.blob-3 {
+  width: 300px;
+  height: 300px;
+  background: rgba(0, 196, 204, 0.15);
+  top: 40%;
+  left: 40%;
+  animation-delay: -10s;
+}
+
+@keyframes drift {
+  100% {
+    transform: translate(60px, 60px) scale(1.1);
+  }
+}
+
+/* --- The Balanced 2-Column Layout --- */
+.spatial-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* Left gets slightly less space to keep tools tight, right gets more for text */
+  gap: 80px;
+  align-items: start; /* CRUCIAL: Keeps header and right column perfectly flush at the top */
+}
+
+/* ========================================
+   LEFT COLUMN: Header & Tools
+======================================== */
+.layout-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.tools-launchpad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.launchpad-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.launchpad-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tool-glass {
+  position: relative;
+  width: 75px;
+  height: 75px; /* Sized perfectly for the 4-column layout */
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.04),
+    inset 0 2px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.tool-logo {
+  font-size: 2rem;
+  color: var(--text);
+  transition:
+    color 0.4s ease,
+    transform 0.4s ease;
+}
+
+.tool-text-logo {
+  font-family: Arial, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -1.5px;
+  transition:
+    color 0.4s ease,
+    transform 0.4s ease;
+}
+
+.tool-name {
+  font-size: 0.85rem;
+  font-weight: var(--fw-semibold);
+  color: var(--text-light);
+  text-align: center;
+  opacity: 0.7;
+  transition:
+    opacity 0.4s ease,
+    color 0.4s ease;
+}
+
+/* THE BRAND GLOW HOVER MAGIC */
+@media (hover: hover) {
+  .launchpad-card:hover .tool-glass {
+    transform: translateY(-8px) scale(1.05);
+    background: var(--white);
+    box-shadow:
+      0 20px 40px var(--brand-color),
+      inset 0 2px 0 rgba(255, 255, 255, 1);
+    border-color: var(--brand-color);
+  }
+
+  .launchpad-card:hover .tool-logo,
+  .launchpad-card:hover .tool-text-logo {
+    color: var(--brand-color);
+    transform: scale(1.1);
+  }
+
+  .launchpad-card:hover .tool-name {
+    opacity: 1;
+    color: var(--text);
+    transform: translateY(-4px);
+  }
+}
+
+/* ========================================
+   RIGHT COLUMN: Expanding Glass Strips
+======================================== */
+.skills-strip-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.glass-strip {
+  position: relative;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 25px 30px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.02),
+    inset 0 2px 0 rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+  cursor: default;
+
+  opacity: 0;
+  transform: translateX(40px); /* Changed to animate in from the right */
+  transition:
+    opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    padding 0.4s ease,
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.glass-strip.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.strip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.strip-title {
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  margin: 0;
+  transition: transform 0.4s ease;
+}
+
+.strip-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s ease;
+}
+
+/* The Animated Neon Line */
+.strip-glow-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--accent);
+  box-shadow: 0 0 15px var(--accent);
+  transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Strip Hover Effects */
+@media (hover: hover) {
+  .glass-strip:hover {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px 30px 20px 30px;
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.06),
+      inset 0 2px 0 rgba(255, 255, 255, 1);
+    transform: scale(1.02);
+  }
+
+  .glass-strip:hover .strip-title {
+    transform: translateX(10px);
+  }
+  .glass-strip:hover .strip-icon {
+    color: var(--accent);
+    transform: rotate(-15deg);
+  }
+  .glass-strip:hover .strip-glow-line {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 1024px) {
+  .spatial-split-layout {
+    grid-template-columns: 1fr; /* Stacks the two columns on tablet */
+    gap: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .spatial-skills {
+    padding: 80px 0;
+  }
+
+  /* Layout stacks: Header & Tools first, then Skills strips below */
+  .glass-strip {
+    padding: 20px;
+  }
+  .strip-title {
+    font-size: 1.1rem;
+  }
+
+  .tools-launchpad {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+
+  .tool-glass {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+  }
+  .tool-logo,
+  .tool-text-logo {
+    font-size: 1.5rem;
+  }
+  .tool-name {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,293 @@
+/* ========================================
+   CREATIVE BENTO PROJECTS STYLES
+======================================== */
+
+.premium-projects {
+  position: relative;
+  padding: 120px 0;
+  background: var(--light-bg);
+  overflow: hidden;
+}
+
+.bg-watermark {
+  position: absolute;
+  top: 5%;
+  left: -2%;
+  font-size: clamp(10rem, 25vw, 35rem);
+  font-weight: var(--fw-extrabold);
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(55, 37, 24, 0.05);
+  line-height: 0.8;
+  z-index: 0;
+  pointer-events: none;
+  letter-spacing: -0.04em;
+  user-select: none;
+}
+
+.relative-z {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- The Bento Grid System --- */
+.project-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 380px; /* Base height for square cards */
+  gap: 20px;
+}
+
+.project-wide {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+.project-tall {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+.project-square {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* --- Base Card Styling --- */
+.bento-project {
+  position: relative;
+  display: block;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  background: var(--text);
+
+  /* Scroll Reveal Initial State */
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.bento-project.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Background Image & Overlay */
+.project-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    filter 0.5s ease;
+  z-index: 0;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Default elegant gradient */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  transition: background 0.6s ease;
+  z-index: 1;
+}
+
+/* --- Tags Layer --- */
+.project-tags {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  z-index: 2;
+}
+
+.glass-tag {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--white);
+  padding: 6px 14px;
+  border-radius: var(--radius-round);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: var(--fw-semibold);
+}
+
+/* --- Unified Info Container --- */
+.project-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.project-title {
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: var(--white);
+  margin: 0;
+  line-height: 1.1;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.project-title .serif-italic {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* --- The Kinetic Reveal Trick --- */
+.project-details {
+  display: grid;
+  grid-template-rows: 0fr; /* Collapsed initially */
+  transition: grid-template-rows 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.project-details-inner {
+  min-height: 0; /* Required for grid animation */
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(15px); /* Starts slightly lower */
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-top: 15px; /* Spacing between title and list */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-list li {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: var(--fw-light);
+}
+
+.project-list li strong {
+  color: var(--white);
+  font-weight: var(--fw-medium);
+}
+
+/* ========================================
+   THE MAGIC HOVER INTERACTIONS
+======================================== */
+@media (hover: hover) {
+  /* Image scales slowly and blurs slightly to make text ultra-readable */
+  .bento-project:hover .project-img {
+    transform: scale(1.05);
+    filter: blur(2px);
+  }
+
+  /* Overlay gets gracefully darker */
+  .bento-project:hover .project-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
+  }
+
+  /* Expand the grid to reveal the details seamlessly */
+  .bento-project:hover .project-details {
+    grid-template-rows: 1fr;
+  }
+
+  /* Fade in and slide up the details */
+  .bento-project:hover .project-details-inner {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s; /* Tiny delay for smoothness */
+  }
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 1024px) {
+  .project-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 350px;
+  }
+  .project-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  .project-tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .project-square {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .premium-projects {
+    padding: 80px 0;
+  }
+  .bg-watermark {
+    font-size: 40vw;
+    top: 2%;
+  }
+
+  .project-bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 30px;
+  }
+
+  .project-wide,
+  .project-tall,
+  .project-square {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 450px;
+  }
+
+  /* On mobile (no hover), keep the details permanently open */
+  .project-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
+  }
+
+  .project-details {
+    grid-template-rows: 1fr;
+  }
+  .project-details-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .project-title {
+    font-size: 2.2rem;
+  }
+}

@@ -1,0 +1,257 @@
+/* ========================================
+   ETHEREAL GLASS RESULTS STYLES
+======================================== */
+
+.ethereal-impact {
+  position: relative;
+  padding: 150px 0;
+  background: #fdfcfb; /* An extremely soft, warm off-white */
+  overflow: hidden;
+}
+
+.relative-z {
+  position: relative;
+  z-index: 2;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+/* --- Beautiful Ambient Background Orbs --- */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
+  animation: float-orb 15s ease-in-out infinite alternate;
+}
+
+.orb-peach {
+  width: 600px;
+  height: 600px;
+  background: rgba(245, 219, 200, 0.8); /* Soft warm peach */
+  top: -100px;
+  left: -200px;
+}
+
+.orb-emerald {
+  width: 500px;
+  height: 500px;
+  background: rgba(16, 185, 129, 0.15); /* Very soft emerald hint */
+  bottom: -100px;
+  right: -100px;
+  animation-delay: -5s;
+}
+
+@keyframes float-orb {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(50px, 50px) scale(1.1);
+  }
+}
+
+/* --- The Frosted Glass Bento Grid --- */
+.glass-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.g-wide {
+  grid-column: span 2;
+}
+
+/* --- The Masterpiece Glass Cards --- */
+.glass-card {
+  position: relative;
+  border-radius: 30px; /* Soft, beautiful curves */
+  background: rgba(255, 255, 255, 0.45); /* Highly translucent white */
+  backdrop-filter: blur(24px); /* Heavy frosted glass blur */
+  -webkit-backdrop-filter: blur(24px);
+
+  /* The Double Border Glass Trick */
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 30px 60px rgba(55, 37, 24, 0.04),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+
+  padding: 40px;
+  overflow: hidden;
+  transition:
+    transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 0.6s ease,
+    background 0.6s ease;
+
+  /* Scroll Reveal Initial State */
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.glass-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Internal Glow on Hover */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 255, 255, 0.8),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  border-radius: 30px;
+  pointer-events: none;
+}
+
+.glass-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 40px 80px rgba(55, 37, 24, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+/* --- Card Content & Typography --- */
+.glass-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.g-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.g-label {
+  font-size: 0.8rem;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-light);
+}
+
+.g-icon-wrapper {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 1.1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.glass-card:hover .g-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.g-middle {
+  display: flex;
+  flex-direction: column;
+}
+
+/* The Beautiful Serif Numbers */
+.g-number {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(4rem, 6vw, 6rem);
+  line-height: 1;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 10px 0;
+  letter-spacing: -0.03em;
+}
+
+.g-symbol {
+  font-size: 0.4em;
+  vertical-align: super;
+  font-family: var(--font-primary);
+  color: var(--accent); /* Adds that tiny pop of emerald */
+}
+
+.g-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  font-weight: var(--fw-light);
+  margin: 0;
+  max-width: 80%;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 1024px) {
+  .glass-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .g-wide {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .ethereal-impact {
+    padding: 100px 0;
+  }
+
+  .glass-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .g-wide {
+    grid-column: span 1;
+  }
+
+  .glass-card {
+    padding: 35px 25px;
+    border-radius: 24px;
+  }
+
+  .g-top {
+    margin-bottom: 25px;
+  }
+
+  .g-desc {
+    max-width: 100%;
+  }
+
+  /* Adjust ambient orbs for mobile */
+  .orb-peach {
+    width: 300px;
+    height: 300px;
+    top: 0;
+  }
+  .orb-emerald {
+    width: 300px;
+    height: 300px;
+    bottom: 0;
+  }
+}

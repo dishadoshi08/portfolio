@@ -1,0 +1,212 @@
+/* ========================================
+   AVANT-GARDE FOOTER
+======================================== */
+.studio-footer {
+  background: var(--text);
+  color: var(--white);
+  padding: 0px 0 20px;
+  overflow: hidden;
+}
+
+.footer-wrapper {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+/* Giant CTA Typography */
+.footer-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.giant-heading {
+  font-size: clamp(4rem, 13vw, 13rem); /* Massive scale */
+  line-height: 0.85;
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.04em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+  display: block;
+  margin-left: 10%; /* Asymmetrical offset */
+  transition:
+    -webkit-text-stroke 0.4s ease,
+    color 0.4s ease;
+}
+
+.giant-heading:hover .outline-text {
+  color: var(--white);
+  -webkit-text-stroke: 1px var(--white);
+}
+
+.magnetic-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  font-weight: var(--fw-light);
+  color: var(--accent);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.magnetic-email::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.magnetic-email:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.arrow-icon {
+  width: clamp(50px, 8vw, 80px);
+  height: clamp(50px, 8vw, 80px);
+  border-radius: 50%;
+  border: 1px solid rgba(232, 221, 204, 0.3); /* Accent with opacity */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.magnetic-email:hover .arrow-icon {
+  background: var(--accent);
+  color: var(--text);
+  transform: rotate(-45deg);
+}
+
+/* Editorial Grid */
+.footer-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 60px;
+}
+
+.grid-item .label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 20px;
+  font-weight: var(--fw-medium);
+}
+
+.grid-item .value {
+  font-size: 1.25rem;
+  font-weight: var(--fw-light);
+  line-height: 1.5;
+  color: var(--white);
+}
+
+.grid-item ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.grid-item a {
+  font-size: 1.25rem;
+  font-weight: var(--fw-light);
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.3s ease;
+}
+
+.grid-item a i {
+  font-size: 0.8rem;
+  opacity: 0;
+  transform: translate(-10px, 10px);
+  transition: all 0.3s ease;
+}
+
+.grid-item a:hover {
+  opacity: 0.6;
+}
+
+.grid-item a:hover i {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Legal / Basement */
+.footer-legal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.to-top {
+  background: none;
+  color: inherit;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.to-top:hover {
+  color: var(--white);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 1024px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 20px;
+  }
+  .studio-header {
+    padding: 20px 0;
+  }
+
+  .footer-wrapper {
+    padding: 0 20px;
+    gap: 70px;
+  }
+  .outline-text {
+    margin-left: 0;
+  }
+
+  .footer-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer-legal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}

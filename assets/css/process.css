@@ -1,0 +1,333 @@
+/* ========================================
+   CINEMATIC PROCESS (FILMSTRIP) SECTION
+======================================== */
+
+.editorial-process {
+  padding: 150px 0;
+  background: var(--light-bg);
+  overflow: hidden;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+/* --- The Filmstrip Container --- */
+.filmstrip-container {
+  display: flex;
+  width: 100%;
+  max-width: 1600px;
+  height: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+  gap: 15px;
+
+  /* Scroll Reveal Initial State */
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.filmstrip-container.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- The Individual Panels --- */
+.filmstrip-panel {
+  position: relative;
+  flex: 1; /* Default width */
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--text);
+  cursor: pointer;
+  transition: flex 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Background Images & Overlays */
+.panel-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  opacity: 0.3;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 0;
+}
+
+.panel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Gradient ensures text is readable when expanded */
+  background: linear-gradient(
+    to top,
+    rgba(15, 15, 15, 0.9) 0%,
+    rgba(15, 15, 15, 0.2) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 1;
+}
+
+/* --- Default State: Vertical Text --- */
+.panel-collapsed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 40px;
+  z-index: 2;
+  transition: opacity 0.4s ease;
+}
+
+.p-num {
+  font-size: 1.2rem;
+  font-weight: var(--fw-bold);
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.p-title-vert {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 1.5rem;
+  font-weight: var(--fw-bold);
+  color: var(--white);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* --- Expanded State: Detailed Content --- */
+.panel-expanded {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.6s ease;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Fixed width container prevents text wrapping/glitching during expansion */
+.expanded-content {
+  min-width: 350px;
+  padding: 40px;
+  transform: translateX(-20px);
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.exp-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.exp-step {
+  font-size: 0.8rem;
+  font-weight: var(--fw-bold);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.exp-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.exp-title {
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: var(--fw-bold);
+  color: var(--white);
+  line-height: 1.1;
+  margin: 0 0 15px 0;
+  letter-spacing: -0.02em;
+}
+
+.exp-title .serif-italic {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.exp-desc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: var(--fw-light);
+  margin: 0;
+}
+
+/* ========================================
+   THE EXPANSION HOVER MAGIC
+======================================== */
+@media (hover: hover) {
+  .filmstrip-panel:hover {
+    flex: 6; /* Panel expands massively */
+  }
+
+  .filmstrip-panel:hover .panel-bg {
+    filter: grayscale(0%);
+    opacity: 0.8;
+    transform: scale(1.05); /* Slow elegant zoom */
+  }
+
+  .filmstrip-panel:hover .panel-overlay {
+    opacity: 1; /* Darkens bottom for text legibility */
+  }
+
+  .filmstrip-panel:hover .panel-collapsed {
+    opacity: 0; /* Hides vertical text */
+  }
+
+  .filmstrip-panel:hover .panel-expanded {
+    opacity: 1; /* Shows detailed content */
+  }
+
+  .filmstrip-panel:hover .expanded-content {
+    transform: translateX(0); /* Glides in */
+    transition-delay: 0.1s;
+  }
+}
+
+//* ========================================
+   RESPONSIVE ADJUSTMENTS (Mobile Swipe Carousel)
+======================================== */
+@media (max-width: 1024px) {
+  .filmstrip-container {
+    height: 500px;
+  }
+  .filmstrip-panel:hover {
+    flex: 4;
+  }
+  .expanded-content {
+    min-width: 300px;
+    padding: 30px;
+  }
+  .exp-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .editorial-process {
+    padding: 80px 0;
+    overflow: hidden;
+  }
+
+  /* Add a subtle "Swipe" hint under the header on mobile */
+  .editorial-process .editorial-header::after {
+    content: "[ Swipe to explore process ]";
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-top: 15px;
+    font-weight: var(--fw-bold);
+  }
+
+  /* 
+      Turn the container into a horizontal swipe track 
+      that hides the ugly scrollbar but keeps the scroll function
+    */
+  .filmstrip-container {
+    flex-direction: row;
+    height: 480px; /* Tall portrait cards */
+    gap: 15px;
+    padding: 0 20px 20px 20px; /* Extra padding for shadow/scroll */
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    /* Hide scrollbar for clean UI */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .filmstrip-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  /* 
+      Force panels to be 85% of screen width.
+      This leaves 15% to show a "peek" of the next card, inviting swiping!
+    */
+  .filmstrip-panel {
+    flex: 0 0 85vw !important;
+    height: 100%;
+    scroll-snap-align: center; /* Magnetically snaps card to center */
+    border-radius: 20px;
+  }
+
+  .panel-collapsed {
+    display: none; /* Hide vertical text entirely */
+  }
+
+  /* Keep detailed content permanently visible */
+  .panel-expanded {
+    opacity: 1;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .expanded-content {
+    min-width: 100%;
+    transform: translateX(0);
+    padding: 30px 25px;
+  }
+
+  .panel-bg {
+    filter: grayscale(20%);
+    opacity: 0.8;
+  }
+
+  /* Thicker gradient at the bottom so text pops on mobile screens */
+  .panel-overlay {
+    opacity: 1;
+    background: linear-gradient(
+      to top,
+      rgba(15, 15, 15, 0.95) 0%,
+      rgba(15, 15, 15, 0.4) 50%,
+      rgba(15, 15, 15, 0.1) 100%
+    );
+  }
+
+  .exp-title {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+  .exp-desc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+}

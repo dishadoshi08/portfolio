@@ -1,0 +1,537 @@
+/* ========================================
+   EDITORIAL ACCESS PASS CERTIFICATIONS
+======================================== */
+
+.editorial-certs {
+  padding: 150px 0;
+  background: var(--light-bg);
+}
+
+.mb-80 {
+  margin-bottom: 80px;
+}
+
+.cert-ticket-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns on desktop */
+  gap: 40px;
+}
+
+/* --- The Ticket Container --- */
+.cert-ticket {
+  display: flex;
+  background: var(--white);
+  border: 1px solid rgba(55, 37, 24, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  overflow: hidden;
+
+  /* Scroll Reveal Baseline */
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.cert-ticket.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cert-ticket:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(55, 37, 24, 0.06);
+  border-color: rgba(55, 37, 24, 0.2);
+}
+
+/* --- Left Stub (Date) --- */
+.ticket-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px 0 10px;
+  min-width: 100px;
+}
+
+.t-year {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.t-status {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: var(--fw-bold);
+  color: var(--accent);
+}
+
+/* --- The Perforated Divider --- */
+.ticket-divider {
+  width: 2px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(55, 37, 24, 0.2) 50%,
+    transparent 50%
+  );
+  background-size: 2px 12px; /* Creates the dashed look */
+  background-repeat: repeat-y;
+  position: relative;
+}
+
+/* Half-circle cutouts to sell the ticket look */
+.ticket-divider::before,
+.ticket-divider::after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  width: 20px;
+  height: 20px;
+  background: var(--light-bg);
+  border-radius: 50%;
+  border: 1px solid rgba(55, 37, 24, 0.1);
+}
+
+.ticket-divider::before {
+  top: -31px;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+.ticket-divider::after {
+  bottom: -31px;
+  border-bottom: none;
+  border-right: none;
+  transform: rotate(45deg);
+}
+
+/* --- Main Body --- */
+.ticket-main {
+  flex-grow: 1;
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.t-issuer {
+  font-size: 0.75rem;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.t-title {
+  font-size: 1.4rem;
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  line-height: 1.2;
+  margin: 0 0 15px 0;
+  letter-spacing: -0.01em;
+}
+
+.t-skills {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-style: italic;
+  font-family: "Playfair Display", serif;
+}
+
+/* --- Right Action Stub --- */
+.ticket-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px 0 20px;
+  border-left: 1px solid rgba(55, 37, 24, 0.05); /* Very faint solid line */
+}
+
+.verify-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--light-bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  margin-bottom: 10px;
+}
+
+.verify-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: var(--fw-bold);
+  color: var(--text-light);
+  transition: color 0.4s ease;
+}
+
+/* Hover over the whole ticket animates the button */
+.cert-ticket:hover .verify-btn {
+  background: var(--accent);
+  color: var(--white);
+  transform: rotate(45deg); /* Playful arrow spin */
+  box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+}
+.cert-ticket:hover .verify-label {
+  color: var(--text);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 1024px) {
+  .cert-ticket-layout {
+    grid-template-columns: 1fr; /* Stack into 1 column on tablet */
+  }
+  .t-title {
+    br {
+      display: none;
+    }
+  } /* Let title flow naturally */
+}
+
+@media (max-width: 768px) {
+  .editorial-certs {
+    padding: 80px 0;
+  }
+
+  .cert-ticket {
+    flex-direction: column; /* Stack the ticket vertically on mobile */
+    padding: 30px;
+  }
+
+  .ticket-date {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 0 20px 0;
+    width: 100%;
+  }
+
+  .t-year {
+    margin-bottom: 0;
+  }
+
+  /* Change the divider to horizontal for mobile */
+  .ticket-divider {
+    width: 100%;
+    height: 2px;
+    background-image: linear-gradient(
+      to right,
+      rgba(55, 37, 24, 0.2) 50%,
+      transparent 50%
+    );
+    background-size: 12px 2px;
+    background-repeat: repeat-x;
+  }
+
+  /* Adjust cutouts for horizontal divider */
+  .ticket-divider::before {
+    top: -9px;
+    left: -41px;
+    transform: none;
+    border: 1px solid rgba(55, 37, 24, 0.1);
+    border-right: none;
+  }
+  .ticket-divider::after {
+    top: -9px;
+    right: -41px;
+    left: auto;
+    transform: none;
+    border: 1px solid rgba(55, 37, 24, 0.1);
+    border-left: none;
+  }
+
+  .ticket-main {
+    padding: 25px 0;
+  }
+
+  /* Move action button to flow nicely at the bottom */
+  .ticket-action {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0 0 0;
+    border-left: none;
+    border-top: 1px solid rgba(55, 37, 24, 0.05);
+    width: 100%;
+  }
+
+  .verify-btn {
+    margin-bottom: 0;
+    width: 45px;
+    height: 45px;
+  }
+} /* ========================================
+   EDITORIAL EXHIBITION CERTIFICATIONS
+======================================== */
+
+.editorial-certs {
+  padding: 150px 0;
+  background: var(--light-bg);
+}
+
+.mb-80 {
+  margin-bottom: 80px;
+}
+
+.cert-ticket-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+}
+
+/* --- The Vertical Ticket Container --- */
+.cert-ticket {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid rgba(55, 37, 24, 0.1);
+  border-radius: 16px;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+
+  /* Scroll Reveal Baseline */
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.cert-ticket.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cert-ticket:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(55, 37, 24, 0.08);
+  border-color: rgba(55, 37, 24, 0.2);
+}
+
+/* --- Top: Massive Certificate Image --- */
+.t-image-hero {
+  position: relative;
+  width: 100%;
+  height: 320px; /* Large enough to read text */
+  background: rgba(55, 37, 24, 0.03); /* Faint studio backdrop */
+  border-radius: 16px 16px 0 0;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.t-image-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensures the certificate NEVER gets cropped */
+  filter: drop-shadow(
+    0 10px 20px rgba(0, 0, 0, 0.08)
+  ); /* Gives it a physical paper look */
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.cert-ticket:hover .t-image-hero img {
+  transform: scale(1.05); /* Gentle zoom on hover to bring it closer */
+}
+
+/* Elegant glass "Verified" badge over the image */
+.t-glass-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 15px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: var(--fw-bold);
+  color: var(--accent);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Middle: The Horizontal Perforated Divider --- */
+.ticket-divider-hz {
+  width: 100%;
+  height: 2px;
+  background-image: linear-gradient(
+    to right,
+    rgba(55, 37, 24, 0.2) 50%,
+    transparent 50%
+  );
+  background-size: 12px 2px; /* Creates the dashed look horizontally */
+  background-repeat: repeat-x;
+  position: relative;
+}
+
+/* Half-circle cutouts on left and right edges */
+.ticket-divider-hz::before,
+.ticket-divider-hz::after {
+  content: "";
+  position: absolute;
+  top: -9px;
+  width: 20px;
+  height: 20px;
+  background: var(--light-bg);
+  border-radius: 50%;
+  border: 1px solid rgba(55, 37, 24, 0.1);
+}
+
+.ticket-divider-hz::before {
+  left: -11px;
+  border-top: none;
+  border-left: none;
+  transform: rotate(-45deg);
+}
+.ticket-divider-hz::after {
+  right: -11px;
+  border-bottom: none;
+  border-right: none;
+  transform: rotate(135deg);
+}
+
+/* --- Bottom: Editorial Details --- */
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px;
+  gap: 20px;
+}
+
+.t-meta-left {
+  display: flex;
+  flex-direction: column;
+  min-width: 80px;
+}
+
+.t-year {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.t-issuer {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: var(--fw-bold);
+  color: var(--accent);
+}
+
+.t-meta-right {
+  flex-grow: 1;
+}
+
+.t-title {
+  font-size: 1.3rem;
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  line-height: 1.3;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.01em;
+}
+
+.t-skills {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-style: italic;
+  font-family: "Playfair Display", serif;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+======================================== */
+@media (max-width: 1024px) {
+  .cert-ticket-layout {
+    grid-template-columns: 1fr;
+  }
+  .t-image-hero {
+    height: 350px;
+  } /* Give even more room on tablet */
+}
+
+@media (max-width: 768px) {
+  .editorial-certs {
+    padding: 80px 0;
+    overflow: hidden;
+  }
+
+  /* Adds the swipe instruction */
+  .editorial-certs .editorial-header::after {
+    content: "[ Swipe to view certificates ]";
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-top: 15px;
+    font-weight: var(--fw-bold);
+  }
+
+  /* Turns the grid into a horizontal swipe track */
+  .cert-ticket-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-bottom: 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+  }
+
+  .cert-ticket-layout::-webkit-scrollbar {
+    display: none;
+  } /* Hides scrollbar in Chrome/Safari */
+
+  .cert-ticket {
+    flex: 0 0 85vw; /* 85% width so the next cert peaks in! */
+    scroll-snap-align: center;
+  }
+
+  .t-image-hero {
+    height: 220px;
+    padding: 20px;
+  }
+
+  .ticket-footer {
+    flex-direction: column;
+    gap: 15px;
+    padding: 25px 20px;
+  }
+
+  .t-meta-left {
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    border-bottom: 1px solid rgba(55, 37, 24, 0.05);
+    padding-bottom: 15px;
+  }
+
+  .t-year {
+    font-size: 1.4rem;
+    margin-bottom: 0;
+  }
+  .t-title {
+    font-size: 1.2rem;
+  }
+}
