@@ -407,3 +407,35 @@
     text-align: center;
   }
 }
+
+/* --- Dossier Button Container --- */
+.dossier-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* --- Secondary Outline Button Variant --- */
+.btn-rose-gold.btn-outline {
+  background: transparent;
+  border: 1px solid #372518;
+  color: #372518;
+  padding: 7px 7px 7px 25px; /* Slightly adjusted to account for the border */
+}
+
+.btn-rose-gold.btn-outline .btn-icon-circle {
+  background: #372518;
+  color: #fff;
+}
+
+/* Hover effect for the outline button */
+.btn-rose-gold.btn-outline:hover {
+  background: #dda7a5;
+  border-color: #dda7a5;
+  color: #fff;
+}
+
+.btn-rose-gold.btn-outline:hover .btn-icon-circle {
+  background: #fff;
+  color: #372518;
+}

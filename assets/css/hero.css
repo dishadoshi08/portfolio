@@ -544,6 +544,7 @@ opacity: 0.15;
 }
 
 .insight-number {
+  text-align: center;
   display: block;
 
   font-size: 3rem;
@@ -555,6 +556,7 @@ opacity: 0.15;
 }
 
 .insight-label {
+  text-align: center;
   margin-top: 8px;
 
   display: block;
