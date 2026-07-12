@@ -277,7 +277,6 @@
   .insight {
     border-left: none;
     border-top: 1px solid var(--text);
-    padding-left: 0;
     padding-top: 15px;
     align-items: center;
     text-align: center;
