@@ -230,10 +230,7 @@
 <link href="assets/css/testimonials.css" rel="stylesheet">
 <link href="assets/css/certifications.css" rel="stylesheet">
 <link href="assets/css/cv.css" rel="stylesheet">
-
-<!-- CORRECT JAVASCRIPT IMPORT (Using defer so it loads after HTML) -->
-<script src="assets/js/experience.js" defer></script>
-<script src="assets/js/testimonials.js" defer></script>
+<link href="assets/css/gallery.css" rel="stylesheet">
 
 <main>
     <!-- ================= HAUTE COUTURE HERO SECTION ================= -->
@@ -928,6 +925,174 @@
 
         </div>
     </section>
+
+    <!-- =========================================================
+     3D CREATIVE WORKS GALLERY
+========================================================= -->
+<section class="vr-carousel-section" id="creative-gallery">
+
+    <div class="container">
+
+        <!-- Section Header -->
+        <div class="gallery-header">
+            <span class="section-subtitle">08 / Selected Works</span>
+
+            <h2 class="gallery-title">
+                A Visual Journey
+                <span>Through Stories & Creative Frames</span>
+            </h2>
+
+            <p class="gallery-desc">
+                Explore a curated collection of visual stories, campaigns,
+                films and creative projects shaped through image, motion and narrative.
+            </p>
+
+            <div class="drag-hint">
+                <i class="fa-solid fa-hand-pointer"></i>
+                <span>Drag to Explore</span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- 3D Scene -->
+    <div class="vr-scene">
+
+        <div class="vr-ring" id="vr-ring">
+
+            <!-- Card 1 -->
+            <div class="vr-card">
+                <div class="card-inner">
+                    <img
+                        src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=800&auto=format&fit=crop"
+                        draggable="false"
+                        alt="Underwater Odyssey">
+
+                    <div class="card-overlay">
+                        <span>Commercial</span>
+                        <h3>Underwater Odyssey</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card 2 -->
+            <div class="vr-card">
+                <div class="card-inner">
+                    <img
+                        src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop"
+                        draggable="false"
+                        alt="NextGen Tech">
+
+                    <div class="card-overlay">
+                        <span>Ad Film</span>
+                        <h3>NextGen Tech</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card 3 -->
+            <div class="vr-card">
+                <div class="card-inner">
+                    <img
+                        src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop"
+                        draggable="false"
+                        alt="The Unsung Stories">
+
+                    <div class="card-overlay">
+                        <span>Documentary</span>
+                        <h3>The Unsung Stories</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card 4 -->
+            <div class="vr-card">
+                <div class="card-inner">
+                    <img
+                        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop"
+                        draggable="false"
+                        alt="Urban Expressions">
+
+                    <div class="card-overlay">
+                        <span>Editorial</span>
+                        <h3>Urban Expressions</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card 5 -->
+            <div class="vr-card">
+                <div class="card-inner">
+                    <img
+                        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop"
+                        draggable="false"
+                        alt="Summer Escape">
+
+                    <div class="card-overlay">
+                        <span>Lifestyle</span>
+                        <h3>Summer Escape</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card 6 -->
+            <div class="vr-card">
+                <div class="card-inner">
+                    <img
+                        src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800&auto=format&fit=crop"
+                        draggable="false"
+                        alt="Wanderlust">
+
+                    <div class="card-overlay">
+                        <span>Travel</span>
+                        <h3>Wanderlust</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card 7 -->
+            <div class="vr-card">
+                <div class="card-inner">
+                    <img
+                        src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop"
+                        draggable="false"
+                        alt="Stargazer">
+
+                    <div class="card-overlay">
+                        <span>Feature Film</span>
+                        <h3>Stargazer</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card 8 -->
+            <div class="vr-card">
+                <div class="card-inner">
+                    <img
+                        src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=800&auto=format&fit=crop"
+                        draggable="false"
+                        alt="Dark Tides">
+
+                    <div class="card-overlay">
+                        <span>Wild Life</span>
+                        <h3>Dark Tides</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
     <!-- ================= ETHEREAL GLASS RESULTS SECTION ================= -->
     <section class="ethereal-impact" id="achievements">
@@ -1832,6 +1997,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 </script>
+
+
+<!-- CORRECT JAVASCRIPT IMPORT (Using defer so it loads after HTML) -->
+<script src="assets/js/experience.js" defer></script>
+<script src="assets/js/testimonials.js" defer></script>
+<script src="assets/js/gallery.js" defer></script>
+
+<!-- GSAP & ScrollTrigger for Sticky Pinning and Scroll-Driven 3D Animation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 </body>
 
 </html>
